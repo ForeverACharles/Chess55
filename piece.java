@@ -4,7 +4,7 @@ public class piece
 	private char name;
 	private int n;
 	private int l;
-	private boolean hasMoved;
+	private boolean castle;
 	
 	public piece(char color, char name, int n, int l)
 	{
@@ -12,7 +12,10 @@ public class piece
 		this.name = name;
 		this.n = n;
 		this.l = l;
-		hasMoved = false;
+		castle = false;
+		if(name == 'K' || name == 'R'){
+			castle = true;
+		}
 	}
 	
 	
@@ -46,13 +49,13 @@ public class piece
 	{
 		this.l = l;
 	}
-	public void setMoved(boolean moved)
+	public void setCastle(boolean castle)
 	{
-		hasMoved = moved;
+		this.castle = castle;
 	}
-	public boolean hasMoved()
+	public boolean canCastle()
 	{
-		return hasMoved;
+		return castle;
 	}
 	public String toString()
 	{
