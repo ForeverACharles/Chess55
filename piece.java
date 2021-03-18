@@ -32,6 +32,16 @@ public class piece
 		return l;
 	}
 	
+	public void setN(int n)
+	{
+		this.n = n;
+	}
+	
+	public void setL(int l)
+	{
+		this.l = l;
+	}
+	
 	public String toString()
 	{
 		return "" + color + name;

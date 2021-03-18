@@ -18,5 +18,6 @@ public class pawn extends piece
 		this.enPassant = enPassant;
 	}
 	
+	
 }
 
