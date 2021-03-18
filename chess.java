@@ -214,6 +214,9 @@ public class chess
 		
 		
 		piece thatPiece = getPiece(disBoard, tokens[1]);
+		if(thatPiece == thisPiece) {
+			return -1;
+		}
 		
 		if(thatPiece != null)
 		{
@@ -256,20 +259,23 @@ public class chess
 		{
 			enPassantPawn = (pawn)tempBoard[thatN][thatL];
 		}
-		if(moveChecker == 3)	//whiteKing/blackKing updates
+		if(moveChecker == 3)	//whiteKing/blackKing, hasMoved updates
 		{
-			if(thisPiece.getColor() == 'w')
-			{
-				whiteKing = thisPiece;
-				whiteKing.setN(thatN);
-				whiteKing.setL(thatL);
+			if(thisPiece.getName() == 'K') {
+				if(thisPiece.getColor() == 'w')
+				{
+					whiteKing = thisPiece;
+					whiteKing.setN(thatN);
+					whiteKing.setL(thatL);
+				}
+				if(thisPiece.getColor() == 'b')
+				{
+					blackKing = thisPiece;
+					blackKing.setN(thatN);
+					blackKing.setL(thatL);
+				}
 			}
-			if(thisPiece.getColor() == 'b')
-			{
-				blackKing = thisPiece;
-				blackKing.setN(thatN);
-				blackKing.setL(thatL);
-			}
+			thisPiece.setMoved(true);
 		}
 		
 		//printBoard(tempBoard);
@@ -316,7 +322,36 @@ public class chess
 		}
 		return boardCopy;
 	}
-	
+	public static boolean path(int thisN, int thisL, int thatN, int thatL) {
+		int ninc;
+		int linc;
+		if (thatN > thisN) {
+			ninc = 1;
+		}
+		else if (thatN < thisN) {
+			ninc = -1;
+		}
+		else {
+			ninc = 0;
+		}
+		if (thatL > thisL) {
+			linc = 1;
+		}
+		else if (thatL < thisL) {
+			linc = -1;
+		}
+		else {
+			linc = 0;
+		}
+		int currN = thisN+ninc;
+		int currL = thisL+linc;
+		while (currN != thatN && currL != thatL) {
+			if(disBoard[currN][currL] != null) {
+				return false;
+			}
+		}
+		return true;
+	}
 	public static int checkMove(piece[][] disBoard, piece thisPiece, String thisLoc, piece thatPiece, String thatLoc)
 	{
 		
@@ -393,7 +428,7 @@ public class chess
 				{
 					if(thatPiece != null)
 					{
-						if(thatPiece.getColor() == 'b')
+						if(thatPiece.getColor() == 'w')
 						{
 							return 1;
 						}
@@ -425,7 +460,28 @@ public class chess
 				return 3;
 			}
 		}
-		
+		if(thisPiece.getName() == 'R')
+		{
+			if(moveN == 0 || moveL == 0) {
+				if(path(thisN, thisL, thatN, thatL)) {
+					return 3;
+				}
+			}
+		}
+		if(thisPiece.getName()== 'B') {
+			if(Math.abs(moveN)==Math.abs(moveL)) {
+				if(path(thisN, thisL, thatN, thatL)) {
+					return 1;
+				}
+			}
+		}
+		if(thisPiece.getName()== 'Q') {
+			if((Math.abs(moveN)==Math.abs(moveL))||(moveN == 0 || moveL == 0)) {
+				if(path(thisN, thisL, thatN, thatL)) {
+					return 1;
+				}
+			}
+		}
 		return -1;
 
 	}
