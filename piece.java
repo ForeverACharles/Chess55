@@ -4,6 +4,7 @@ public class piece
 	private char name;
 	private int n;
 	private int l;
+	private boolean hasMoved;
 	
 	public piece(char color, char name, int n, int l)
 	{
@@ -11,7 +12,11 @@ public class piece
 		this.name = name;
 		this.n = n;
 		this.l = l;
+		hasMoved = false;
 	}
+	
+	
+	
 	
 	public char getColor()
 	{
@@ -41,7 +46,14 @@ public class piece
 	{
 		this.l = l;
 	}
-	
+	public void setMoved(boolean moved)
+	{
+		hasMoved = moved;
+	}
+	public boolean hasMoved()
+	{
+		return hasMoved;
+	}
 	public String toString()
 	{
 		return "" + color + name;
