@@ -345,10 +345,12 @@ public class chess
 		}
 		int currN = thisN+ninc;
 		int currL = thisL+linc;
-		while (currN != thatN && currL != thatL) {
+		while (currN != thatN || currL != thatL) {
 			if(disBoard[currN][currL] != null) {
 				return false;
 			}
+			currN = currN+ninc;
+			currL = currL+linc;
 		}
 		return true;
 	}
