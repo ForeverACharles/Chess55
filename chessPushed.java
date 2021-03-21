@@ -53,7 +53,7 @@ public class chessPushed
 					int move = doMove(userInput, turn);
 					if(move < 0)
 					{
-						System.out.println("Illegal move. Try again");
+						System.out.println("Illegal move, try again");
 					}
 					else if(move == 0)
 					{
