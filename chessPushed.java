@@ -9,6 +9,7 @@ public class chessPushed
 	public static piece enPassantPawn;
 	public static piece whiteKing;
 	public static piece blackKing;
+	public static boolean draw;
 	
 	public static void main(String[]args)
 	{
@@ -47,7 +48,6 @@ public class chessPushed
 				{
 					System.out.print("White's move: ");
 					userInput = scan.nextLine();
-					System.out.println();
 					
 					//check if move is legal
 					int move = doMove(userInput, turn);
@@ -64,6 +64,12 @@ public class chessPushed
 					else if(move == 1)
 					{
 						turn = 'b';
+						System.out.println();
+						break;
+					}
+					else if(move == 2)
+					{
+						gameEnd = true;
 						break;
 					}
 				} while(true);
@@ -88,7 +94,6 @@ public class chessPushed
 				{
 					System.out.print("Black's move: ");
 					userInput = scan.nextLine();
-					System.out.println();
 					
 					//check if move is legal
 					int move = doMove(userInput, turn);
@@ -105,6 +110,12 @@ public class chessPushed
 					else if(move == 1)
 					{
 						turn = 'w';
+						System.out.println();
+						break;
+					}
+					else if(move == 2)
+					{
+						gameEnd = true;
 						break;
 					}
 				} while(true);
@@ -193,13 +204,19 @@ public class chessPushed
 	public static int doMove(String userInput, char turn)
 	{	
 		
+		if(draw){
+			if(userInput.equals("draw")){
+				return 2;
+			}
+			return -1;
+		}
 		if(userInput.equals("resign"))	//return 0 for resign
 		{
 			return 0;
 		}
 		
 		String[] tokens;
-		tokens = userInput.split(" ", 3);
+		tokens = userInput.split(" ", 4);
 		
 		if(tokens.length < 2)
 		{
@@ -210,17 +227,8 @@ public class chessPushed
 		{
 			return -1;
 		}
-	
-		String promoteList = "QNRB";
-		if(tokens.length == 3)
-		{
-			if(promoteList.indexOf(tokens[2].charAt(0)) == -1 || tokens[2].length() != 1)
-			{
-				return -1;
-			}
-		}
 		
-		if(tokens.length > 3)
+		if(tokens.length > 4)
 		{
 			return -1;
 		}
@@ -270,7 +278,7 @@ public class chessPushed
 		piece[][] tempBoard = copyBoard(disBoard);
 		
 		int moveChecker = checkMove(tempBoard, thisPiece, tokens[0], thatPiece, tokens[1]);
-		System.out.println(moveChecker);
+		//System.out.println(moveChecker);
 		
 		if(moveChecker < 0)
 		{
@@ -306,7 +314,7 @@ public class chessPushed
 		}
 		if(moveChecker == 3)	//whiteKing/blackKing, hasMoved updates
 		{
-			System.out.println(thisPiece.canCastle());
+			//System.out.println(thisPiece.canCastle());
 			if(thisPiece.getName() == 'K') {
 				if(thisPiece.getColor() == 'w')
 				{
@@ -322,6 +330,41 @@ public class chessPushed
 				}
 			}
 			thisPiece.setCastle(false);
+		}
+		if(moveChecker == 4){
+			tempBoard[thatN][thatL] = new piece(turn, 'Q', thatN, thatL);
+			String promoteList = "QNRB";
+			if(tokens.length > 2)
+			{
+				if (tokens[2].equals("draw?")){
+					draw = true;
+				}
+				else{
+					if(promoteList.indexOf(tokens[2].charAt(0)) == -1 || tokens[2].length() != 1)
+					{
+						return -1;
+					}
+					tempBoard[thatN][thatL] = new piece(turn, tokens[2].charAt(0), thatN, thatL);
+					if(tokens.length > 3){
+						if(tokens[3].equals("draw?")){
+							draw = true;
+						}
+					}
+				}
+			}
+		}
+		else{
+			if(tokens.length == 3){
+				if (tokens[2].equals("draw?")){
+					draw = true;
+				}
+				else{
+					return -1;
+				}
+			}
+			if(tokens.length > 3){
+				return -1;
+			}
 		}
 		
 		//printBoard(tempBoard);
@@ -365,8 +408,8 @@ public class chessPushed
 	}
 	
 	public static ArrayList<piece> inCheck(piece[][] disBoard, char color, int N, int L){
-		System.out.println(color + " King location: " + N + ", " + L);
-		System.out.println("N = " + N + "L = " + L);
+		//System.out.println(color + " King location: " + N + ", " + L);
+		//System.out.println("N = " + N + "L = " + L);
 		
 		ArrayList<piece> checkPieces = new ArrayList<piece>();
 		
@@ -459,8 +502,8 @@ public class chessPushed
 	
 	public static ArrayList<piece> inCheckers(piece[][] disBoard, char color, int N, int L)
 	{
-		System.out.println(color + " King location: " + N + ", " + L);
-		System.out.println("N = " + N + "L = " + L);
+		//System.out.println(color + " King location: " + N + ", " + L);
+		//System.out.println("N = " + N + "L = " + L);
 		
 		ArrayList<piece> checkPieces = new ArrayList<piece>();
 		
@@ -723,9 +766,9 @@ public class chessPushed
 		int moveN = thatN - thisN;
 		int moveL = thatL - thisL;
 		
-		System.out.println("moveN: " + moveN + " moveL: " + moveL);
-		System.out.println("thisN: " + thisN + " thisL: " + thisL);
-		System.out.println("thatN: " + thatN + " thatL: " + thatL);
+		//System.out.println("moveN: " + moveN + " moveL: " + moveL);
+		//System.out.println("thisN: " + thisN + " thisL: " + thisL);
+		//System.out.println("thatN: " + thatN + " thatL: " + thatL);
 		
 		if(thisPiece.getName() == 'p')
 		{
@@ -741,6 +784,9 @@ public class chessPushed
 				
 				if(moveN == 1 && moveL == 0 && thatPiece == null)	//move pawn 1 space forward
 				{
+					if(thatN == 7){
+						return 4;
+					}
 					return 1;
 				}
 				
@@ -750,6 +796,9 @@ public class chessPushed
 					{
 						if(thatPiece.getColor() == 'b')
 						{
+							if(thatN == 7){
+								return 4;
+							}
 							return 1;
 						}
 					}
@@ -776,6 +825,9 @@ public class chessPushed
 				
 				if(moveN == -1 && moveL == 0 && thatPiece == null)	//move pawn 1 space forward
 				{
+					if(thatN == 0){
+						return 4;
+					}
 					return 1;
 				}
 				
@@ -785,6 +837,9 @@ public class chessPushed
 					{
 						if(thatPiece.getColor() == 'w')
 						{
+							if(thatN == 0){
+								return 4;
+							}
 							return 1;
 						}
 					}
