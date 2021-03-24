@@ -137,15 +137,15 @@ public class chessPushed
 		int location = 0;
 		for(int l = 0; l < 8; l++)
 		{
-			disBoard[1][l] = new pawn('w','p', 1, l);
-			disBoard[6][l] = new pawn('b', 'p', 6 , l);
+			disBoard[1][l] = new piece('w','p', 1, l);
+			disBoard[6][l] = new piece('b', 'p', 6 , l);
 		}
 		
 		disBoard[0][0] = new piece('w', 'R', 0, 0);
 		disBoard[0][1] = new piece('w', 'N', 0, 1);
 		disBoard[0][2] = new piece('w', 'B', 0, 2);
 		disBoard[0][3] = new piece('w', 'Q', 0, 3);
-		disBoard[0][4] = new king('w', 'K', 0, 4);
+		disBoard[0][4] = new piece('w', 'K', 0, 4);
 		whiteKing = disBoard[0][4];
 		disBoard[0][5] = new piece('w', 'B', 0, 5);
 		disBoard[0][6] = new piece('w', 'N', 0, 6);
@@ -155,7 +155,7 @@ public class chessPushed
 		disBoard[7][1] = new piece('b', 'N', 7, 1);
 		disBoard[7][2] = new piece('b', 'B', 7, 2);
 		disBoard[7][3] = new piece('b', 'Q', 7, 3);
-		disBoard[7][4] = new king('b', 'K', 7, 4);
+		disBoard[7][4] = new piece('b', 'K', 7, 4);
 		blackKing = disBoard[7][4];
 		disBoard[7][5] = new piece('b', 'B', 7, 5);
 		disBoard[7][6] = new piece('b', 'N', 7, 6);
