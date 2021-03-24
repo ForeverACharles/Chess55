@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
-public class chess
+public class Chess
 {
 	/**
 	* The default 8x8 piece array that holds the official current position of our chess board
@@ -419,8 +419,8 @@ public class chess
 	/**
 	* Converts chess location syntax to array coordinates and returns the piece at the relevant pointer.
 	*
-	* @param disBoard, the chess board in its current state
-	* @param location, ie e4
+	* @param disBoard the chess board in its current state
+	* @param location ie e4
 	* @return the piece pointed to at the specified location
 	*/		
 	public static piece getPiece(piece[][] disBoard, String location)
@@ -444,7 +444,7 @@ public class chess
 	/**
 	* Creates a temporary copy of the chess board to test legality of certain moves
 	*
-	* @param disBoard, the 8x8 piece array chess board in its current state to be copied
+	* @param disBoard the 8x8 piece array chess board in its current state to be copied
 	* @return a new 8x8 piece array with the same piece positions
 	*/			
 	public static piece[][] copyBoard(piece[][] disBoard)
@@ -464,8 +464,8 @@ public class chess
 	/**
 	* Checks if a specified location can be legally captured or accessed by a piece of the opposite color given
 	*
-	* @param disBoard, the 8x8 piece array chess board in its current state
-	* @param color, the piece color of the king in check or the checking side
+	* @param disBoard the 8x8 piece array chess board in its current state
+	* @param color the piece color of the king in check or the checking side
 	* @param N row number of specified location
 	* @param L column number of specified location
 	* @return the list of pieces of the opposite color that can move to N,L, empty would mean not in check or cannot be occupied
@@ -575,9 +575,9 @@ public class chess
 	/**
 	* Given location and color of king and list of attacking pieces, checks if legal moves exist
 	*
-	* @param disBoard, the 8x8 piece array chess board in its current state
-	* @param checkPieces, the list of pieces putting the king in check
-	* @param color, the piece color of the king in check
+	* @param disBoard the 8x8 piece array chess board in its current state
+	* @param checkPieces the list of pieces putting the king in check
+	* @param color the piece color of the king in check
 	* @param N row number of specified location
 	* @param L column number of specified location
 	* @return true if no legal moves exist and false if legal move was found
@@ -740,11 +740,11 @@ public class chess
 	/**
 	* Checks if given move is in accordance with the moveset of the given piece and sends indicators for special cases
 	*
-	* @param disBoard, the 8x8 piece array chess board in its current state
-	* @param thisPiece, the piece to be moved
-	* @param thisLoc, the current location of the piece in chess string syntax
-	* @param thatPiece, the piece or space to be moved to
-	* @param thatLoc, the destination location of the piece in chess string syntax
+	* @param disBoard the 8x8 piece array chess board in its current state
+	* @param thisPiece the piece to be moved
+	* @param thisLoc the current location of the piece in chess string syntax
+	* @param thatPiece the piece or space to be moved to
+	* @param thatLoc the destination location of the piece in chess string syntax
 	* @return -1 for illegality, 1 for normal legal move, 2 to indicate a pawn double move, 3 for the movement of king or rook, 4 for pawn promotion
 	*/		
 	public static int checkMove(piece[][] disBoard, piece thisPiece, String thisLoc, piece thatPiece, String thatLoc)
