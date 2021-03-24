@@ -19,7 +19,8 @@ public class piece
 	
 	/**
 	* 
-	* Default <code>piece</code> constructor.
+	* Default <code>piece</code> constructor,
+	* Only Kings and Rooks assume castle capability.
 	*
 	* @param color color of the chess piece
 	* @param name the type of chess piece, abbreviated as a single character
