@@ -1,3 +1,4 @@
+package chess;
 /**
 * Primary chess class which initiates games and executes game logic
 *
@@ -12,7 +13,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
-public class chessPushed
+public class chess
 {
 	/**
 	* The default 8x8 piece array that holds the official current position of our chess board
@@ -200,7 +201,7 @@ public class chessPushed
 	
 	/**
 	* Prints the current state of the board in accordance with the proper board format
-	*
+	* @param disBoard the 8x8 array board to be printed
 	*/
 	public static void printBoard(piece[][] disBoard)
 	{
@@ -698,7 +699,6 @@ public class chessPushed
 	/**
 	* For Q, R, B, checks if there is an open corridor between current location and destination
 	*
-	* @param disBoard, the 8x8 piece array chess board in its current state
 	* @param thisN current row of piece
 	* @param thisL current column of piece
 	* @param thatN row number of specified location
