@@ -5,8 +5,8 @@ by Charles Li & Max Sun
 Implementaion of Chess written in Java
 
 ## How to run via Eclipse IDE
-1.Open the */Chess55* folder as a project in Eclipse
-2.Run *Chess.java*
+1. Open the */Chess55* folder as a project in Eclipse
+2. Run *Chess.java*
 
 
 ## How to run via Command Line
