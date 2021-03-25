@@ -2,8 +2,9 @@ package chess;
 /**
 * Primary chess class which initiates games and executes game logic
 *
-* <code>chessPushed</code> contains the code and logic needed to run a game of chess, including creating and printing the board,
-*  interpreting moves and turns, and following the rules of chess.
+* <code>chessPushed</code> contains the code and logic needed to run a game of chess, 
+* including creating and printing the board,
+* interpreting moves and turns, and following the rules of chess.
 *
 * @author Charles Li
 * @author Max Sun
@@ -16,36 +17,43 @@ import java.lang.*;
 public class Chess
 {
 	/**
-	* The default 8x8 piece array that holds the official current position of our chess board
+	* The default 8x8 <code>piece</code> array that holds the official current position of our chess board
 	*/	
 	public static piece[][] disBoard;
+	
 	/**
-	* Piece object representing the eligible enPassant pawn, null if none 
+	* <code>piece</code> object representing the eligible enPassant pawn, <code>null</code> if none 
 	*/
 	public static piece enPassantPawn;
+	
 	/**
-	* Piece object pointing to the current location of the white king
+	* <code>piece</code> object representing the white king, used to keep track of
+	* its current location
 	*/	
 	public static piece whiteKing;
+	
 	/**
-	* Piece object pointing to the current location of the black king
+	* <code>piece</code> object representing the black king, used to keep track of
+	* its current location
 	*/	
 	public static piece blackKing;
+	
 	/**
-	* Boolean specifying whether a draw was offered on the previous turn
+	* <code>Boolean</code> specifying whether a draw was offered on the previous turn
 	*/
 	public static boolean draw;
+	
 	/**
 	* 
-	* <code>chessPushed</code> main method.
-	* Begins the game, calls for board initialization, scans and interprets turns, controls when to end the game and terminate the program.
-	* 
+	* <code>Chess</code> main method.
+	* Begins the game, calls for board initialization, gets user input, interprets turns, 
+	* and controls when to end the game and terminate the program.
+	*
 	*/
 	public static void main(String[]args)
 	{
 		disBoard = initBoard();
 		
-
 		Scanner scan = new Scanner(System.in);
 		String userInput;	
 		
@@ -59,9 +67,7 @@ public class Chess
 			int kL;
 			printBoard(disBoard);
 			if(turn == 'w')
-			{
-
-					
+			{	
 				kN = whiteKing.getN();
 				kL = whiteKing.getL();
 				ArrayList<piece> checkPieces = inCheck(disBoard, 'w', kN, kL);
@@ -155,7 +161,7 @@ public class Chess
 	/**
 	* Creates a chess board at starting position
 	*
-	* @return an 8x8 piece array with 32 black and white piece objects in starting position
+	* @return an 8x8 <code>piece</code> array with 32 black and white <code>piece</code> objects in starting position
 	*/
 	public static piece[][] initBoard()
 	{
@@ -238,7 +244,8 @@ public class Chess
 	}
 	
 	/**
-	* Interprets move input string, checks for correct syntax and trivial errors, calls checkMove to determine move legality, executes legal moves
+	* Interprets move input <code>String</code>, checks for correct syntax and trivial errors, 
+	* calls <code>checkMove</code> to determine move legality, executes legal moves
 	*
 	* @param userInput the inputted move by the user, ie e2 e4
 	* @param turn white or black's turn
@@ -288,7 +295,6 @@ public class Chess
 		}
 		
 		//System.out.println(thisPiece);
-		
 		
 		piece thatPiece = getPiece(disBoard, tokens[1]);
 		if(thatPiece == thisPiece) {
@@ -417,17 +423,16 @@ public class Chess
 		return 1;
 	}
 	/**
-	* Converts chess location syntax to array coordinates and returns the piece at the relevant pointer.
+	* Converts chess location syntax to array coordinates and returns the piece at the location
 	*
 	* @param disBoard the chess board in its current state
 	* @param location ie e4
-	* @return the piece pointed to at the specified location
+	* @return the <code>piece</code> at the location
 	*/		
 	public static piece getPiece(piece[][] disBoard, String location)
 	{
 		char L = location.charAt(0);
 		char N = location.charAt(1);	//e3
-		
 		
 		int numN = N - 48 - 1;
 		int numL = L - 'a';
@@ -441,11 +446,12 @@ public class Chess
 		
 		return disBoard[numN][numL];
 	}
+	
 	/**
-	* Creates a temporary copy of the chess board to test legality of certain moves
+	* Creates and returns a temporary copy of the chess board to test legality of certain moves
 	*
-	* @param disBoard the 8x8 piece array chess board in its current state to be copied
-	* @return a new 8x8 piece array with the same piece positions
+	* @param disBoard the 8x8 <code>piece</code> array chess board in its current state to be copied
+	* @return a new 8x8 <code>piece</code> array with the same piece positions
 	*/			
 	public static piece[][] copyBoard(piece[][] disBoard)
 	{
@@ -464,11 +470,12 @@ public class Chess
 	/**
 	* Checks if a specified location can be legally captured or accessed by a piece of the opposite color given
 	*
-	* @param disBoard the 8x8 piece array chess board in its current state
-	* @param color the piece color of the king in check or the checking side
+	* @param disBoard the 8x8 <code>piece</code> array chess board in its current state
+	* @param color the piece color of the king in check or the color which is checking the king
 	* @param N row number of specified location
 	* @param L column number of specified location
-	* @return the list of pieces of the opposite color that can move to N,L, empty would mean not in check or cannot be occupied
+	* @return the list of <code>piece</code>s of the opposite color that can move to N,L, 
+	* empty would mean not in check or cannot be occupied
 	*/	
 	public static ArrayList<piece> inCheck(piece[][] disBoard, char color, int N, int L)
 	{
@@ -569,9 +576,9 @@ public class Chess
 				}
 			}
 		}
-	
 		return checkPieces;
 	}
+	
 	/**
 	* Given location and color of king and list of attacking pieces, checks if legal moves exist
 	*
@@ -693,11 +700,11 @@ public class Chess
 			currN = currN + nInc;
 			currL = currL + lInc;
 		}
-	
 		return true;
 	}
+	
 	/**
-	* For Q, R, B, checks if there is an open corridor between current location and destination
+	* Checks if there is a path free of pieces between current location and destination for Queens, Rooks, and Bishops
 	*
 	* @param thisN current row of piece
 	* @param thisL current column of piece
@@ -737,14 +744,15 @@ public class Chess
 		}
 		return true;
 	}
+	
 	/**
-	* Checks if given move is in accordance with the moveset of the given piece and sends indicators for special cases
+	* Checks if given move is in accordance with the moveset of the given piece and returns indicators for special cases
 	*
-	* @param disBoard the 8x8 piece array chess board in its current state
+	* @param disBoard the 8x8 <code>piece</code> array chess board in its current state
 	* @param thisPiece the piece to be moved
-	* @param thisLoc the current location of the piece in chess string syntax
-	* @param thatPiece the piece or space to be moved to
-	* @param thatLoc the destination location of the piece in chess string syntax
+	* @param thisLoc the current location of the piece in chess <code>String</code> syntax
+	* @param thatPiece the <code>piece</code> or space to be moved to
+	* @param thatLoc the destination location of the piece in chess <code>String</code> syntax
 	* @return -1 for illegality, 1 for normal legal move, 2 to indicate a pawn double move, 3 for the movement of king or rook, 4 for pawn promotion
 	*/		
 	public static int checkMove(piece[][] disBoard, piece thisPiece, String thisLoc, piece thatPiece, String thatLoc)
@@ -909,6 +917,4 @@ public class Chess
 		return -1;
 
 	}
-	
-	
 }
