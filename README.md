@@ -9,7 +9,7 @@ Implementaion of Chess written in Java
 2.Run *Chess.java*
 
 
-# How to run via Command Line
+## How to run via Command Line
 1. Open the */Chess55/src/chess* directory in terminal
 
 2. Compile *piece.java* & *Chess.java* files using *javac* command
