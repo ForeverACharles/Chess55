@@ -20,7 +20,7 @@ Implementaion of Chess written in Java. Play against a friend locally in a termi
 
 Moves are specified by entering the coordinate of the piece you want to move followed by the destination you wish to move it to.
 
-`White's move: ` `e2 e3` at the start of a new game moves white pawn at E2 one square forward to E3.
+`White's move:`  `e2 e3` at the start of a new game moves white pawn at E2 one square forward to E3.
 
 If a draw occurs, the game will notify the player and the opposing player may accept the draw wit `draw`
 
