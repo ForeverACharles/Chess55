@@ -22,7 +22,7 @@ Moves are specified by entering the coordinate of the piece you want to move fol
 
 `White's move:`  `e2 e3` at the start of a new game moves white pawn at E2 one square forward to E3.
 
-If a draw occurs, the game will notify the player and the opposing player may accept the draw wit `draw`
+If a draw occurs, the game will notify the player and the opposing player may accept the draw with `draw`
 
 At any point a player may resign with `resign`
 
