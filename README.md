@@ -12,9 +12,9 @@ Implementaion of Chess written in Java. Play against a friend locally in a termi
 ## How to run via Command Line
 1. Open the */Chess55/src/chess* directory in terminal
 
-2. Compile *piece.java* & *Chess.java* files using *javac* command
+2. Compile *piece.java* & *Chess.java* files using `*javac *.java`
 
-3. Run *Chess.java* with *java Chess*
+3. Move up a directory to */Chess55/src/chess* and run `java chess.Chess`
 
 
 ## How to view the javadocs
