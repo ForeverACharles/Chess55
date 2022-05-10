@@ -4,6 +4,8 @@ by Charles Li & Max Sun. Original repo hosted on [BitBucket](https://bitbucket.o
 
 Implementaion of Chess written in Java. Play against a friend locally in a terminal :D
 
+<img src="https://user-images.githubusercontent.com/50348516/167724150-4729a892-c23d-4cb5-b4de-46c0e1881317.png" width=800>
+
 ### How to run via Eclipse IDE
 1. Open the */Chess55* folder as a project in Eclipse
 2. Run *Chess.java*
