@@ -16,7 +16,7 @@ Implementaion of Chess written in Java. Play against a friend locally in a termi
 
 3. Move up a directory to */Chess55/src/* and run `java chess.Chess`
 
-### Hot to play
+### How to Play
 
 Moves are specified by entering the coordinate of the piece you want to move followed by the destination you wish to move it to.
 
