@@ -2,7 +2,7 @@
 
 by Charles Li & Max Sun
 
-Implementaion of Chess written in Java
+Implementaion of Chess written in Java. Play against a friend locally in a terminal :D
 
 ## How to run via Eclipse IDE
 1. Open the */Chess55* folder as a project in Eclipse
