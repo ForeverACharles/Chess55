@@ -1,6 +1,6 @@
 # Chess Game
 
-by Charles Li & Max Sun
+by Charles Li & Max Sun. Original repo hosted on [BitBucket](https://bitbucket.org/ms2814/55.git)
 
 Implementaion of Chess written in Java. Play against a friend locally in a terminal :D
 
